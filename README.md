@@ -19,6 +19,12 @@ Or install it yourself as:
     $ gem install activemenu
 
 ## Usage
+
+```ruby
+@menu = ActiveMenu::create(:mymenu)
+```
+
+
 ```ruby
 @menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
 # def initialize(id, href, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
