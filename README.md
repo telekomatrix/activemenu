@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 ```ruby
-@menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') # def initialize(id, href, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
+@menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
+# def initialize(id, href, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
 @menu.submenu(:mysubmenu, "test") do |sm|
   sm.content = 'My submenu'
   sm.submenu(:mysubsubmenu, 'test 2') do |ssm|
