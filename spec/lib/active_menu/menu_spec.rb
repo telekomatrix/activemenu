@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe ActiveMenu::Menu do
-  subject {ActiveMenu::Menu.new(:idtest, "http://example.com")}
+  subject {ActiveMenu::Menu.new(:idtest)}
 
   it {should respond_to(:id)}
   it {should respond_to(:href)}

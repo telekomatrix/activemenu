@@ -4,8 +4,6 @@ A toolkit to create menus with multi level and a Domain Specific Lanague(DSL) fo
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
 other renderer like simple-navigation or you own.
 
-Y
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -29,7 +27,7 @@ Or install it yourself as:
 
 ```ruby
 @menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
-# def initialize(id, href, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
+# def initialize(id, href = nil, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
 @menu.submenu(:mysubmenu, "test") do |sm|
   sm.content = 'My submenu'
   sm.submenu(:mysubsubmenu, 'test 2') do |ssm|

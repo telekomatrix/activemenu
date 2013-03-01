@@ -3,7 +3,6 @@ require "active_menu/menu"
 require "active_menu/registry"
 
 module ActiveMenu
-  extend Forwardable
 
   def self.registry
     ActiveMenu::Registry.instance

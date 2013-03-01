@@ -2,7 +2,7 @@ class ActiveMenu::Menu
   
   attr_accessor :id, :href, :content, :submenus, :parent
   
-  def initialize(id, href, content=nil, submenus=[], parent=nil, &block)
+  def initialize(id, href = nil, content=nil, submenus=[], parent=nil, &block)
     @id = id
     @href = href
     @submenus = []
