@@ -1,33 +1,54 @@
 class ActiveMenu::Menu
   
-  attr_accessor :id, :href, :content, :submenus, :parent, :options
+  attr_accessor :id, :submenus, :parent, :options
   
-  def initialize(id, href = nil, content=nil, options={}, &block)
+  def initialize(id, options={}, &block)
     @id = id.to_sym
-    @href = href
-    @content = content
-    @submenus = []
     @options = options
-
-    #sets the parent
-    submenus.each {|s| s.parent = self }
-    @submenus = submenus
+    @submenus = []
     yield(self) if block_given?
   end
 
-  def submenu(id, href, content=nil, options={}, &block)
-    sm = self.class.new(id, href, content, options, &block)
+  def submenu(id, options={}, &block)
+    sm = self.class.new(id, options, &block)
     sm.parent = self
     @submenus << sm
     sm
   end
 
-  def tag(tag_name=nil)
-    if tag_name.nil?
+  def text(value = nil)
+    if value.nil?
+      @options[:text]
+    else
+      value = value.to_sym
+      @options[:text] = value
+    end
+  end
+
+  def text=(value)
+    self.text(value)
+  end
+
+  def href(value = nil)
+    if value.nil?
+      @options[:href]
+    else
+      value = value.to_sym
+      @options[:href] = value
+    end
+  end
+
+  def href=(value)
+    self.href(value)
+  end
+  
+
+  def tag(value=nil)
+    if value.nil?
       @options[:tag]
     else
-      tag_name = tag_name.to_sym
-      @options[:tag] = tag_name
+      value = value.to_sym
+      @options[:tag] = value
     end
   end
 

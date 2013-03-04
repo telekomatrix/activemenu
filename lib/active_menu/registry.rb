@@ -8,8 +8,8 @@ class ActiveMenu::Registry
     @menus = []
   end
 
-  def create(id, href, &block)
-    menu = ActiveMenu::Menu.new(id, href=nil, &block)
+  def create(id, options={}, &block)
+    menu = ActiveMenu::Menu.new(id, options, &block)
     @menus << menu
     menu
   end

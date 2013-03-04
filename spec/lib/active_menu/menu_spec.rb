@@ -5,36 +5,32 @@ describe ActiveMenu::Menu do
   subject {ActiveMenu::Menu.new(:idtest)}
 
   it {should respond_to(:id)}
-  it {should respond_to(:href)}
-  it {should respond_to(:content)}
   it {should respond_to(:submenus)}
   it {should respond_to(:parent)}
   it {should respond_to(:options)}
-
-
+  
   its(:submenus) {should  be_a(Array)}
 
-
   before :each do
-    @menu = ActiveMenu::Menu.new(:idtest, "http://example.com", "My menu")
+    @menu = ActiveMenu::Menu.new(:idtest, href: "http://example.com", text: "My menu")
   end
 
   #it 'can spec'
 
   it 'has the right attributes values' do
-    @menu.content.should == 'My menu'
+    @menu.text.should == 'My menu'
     @menu.id.should == :idtest
     @menu.href.should == "http://example.com"
   end
 
   it 'can add submenus' do
-    @submenu = ActiveMenu::Menu.new(:mysubmenu, '#an_anchor', "My submenu")
+    @submenu = ActiveMenu::Menu.new(:mysubmenu, href: '#an_anchor', text: "My submenu")
     @menu.submenus << @submenu
     @menu.submenus.length.should == 1
   end
 
   it 'can add submenus directly' do
-    submenu =  @menu.submenu(:mysubmenu, '#an_anchor', "My submenu")
+    submenu =  @menu.submenu(:mysubmenu, href: '#an_anchor', text: "My submenu")
     @menu.submenus.length.should == 1
     submenu.parent.should == @menu
     submenu.parent.id.should == @menu.id
@@ -42,12 +38,12 @@ describe ActiveMenu::Menu do
 
 
   it 'have a flexible DSL for menus' do
-    @menu.submenu(:mysubmenu, "test") do |sm|
+    @menu.submenu(:mysubmenu, text: "test") do |sm|
       @sm = sm
-      sm.content = 'My submenu'
-      sm.submenu(:mysubsubmenu, 'test 2') do |ssm|
+      sm.text = 'My submenu'
+      sm.submenu(:mysubsubmenu, text: 'test 2') do |ssm|
         @ssm = ssm
-        ssm.content == 'My subsubmenu'
+        ssm.text == 'My subsubmenu'
       end
     end
 

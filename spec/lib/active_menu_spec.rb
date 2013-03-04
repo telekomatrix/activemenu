@@ -15,7 +15,7 @@ describe ActiveMenu do
   end
 
   it 'can create a menu directly' do
-    ActiveMenu::create(:someid, 'http://example.com').should be_a_kind_of(ActiveMenu::Menu)
+    ActiveMenu::create(:someid, href: 'http://example.com').should be_a_kind_of(ActiveMenu::Menu)
     ActiveMenu::registry.menus.length.should == 1
   end
 
