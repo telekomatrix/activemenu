@@ -45,7 +45,6 @@ end
 ### Get the menu
 You can retrieve the menu instance with the method get...
 ```ruby
-  # 
   @menu = ActiveMenu::get(:someid)
 ```
 
