@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/sadjow/activemenu.png)](https://gemnasium.com/sadjow/activemenu)
 [![Code Climate](https://codeclimate.com/github/sadjow/activemenu.png)](https://codeclimate.com/github/sadjow/activemenu)
 
-A toolkit to create menus with multi level and a Domain Specific Lanague(DSL) for Menus.
+A toolkit to create menus with multi level and a Domain Specific Language(DSL) for Menus.
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
 other renderer like simple-navigation or you own.
 
@@ -65,7 +65,7 @@ These options are write to a hash, that you can use with other gem to render it.
   @menu.options[:myoptions] = 'myvalue'
 ```
 
-## Standard DSL (Domain Specif Language) options
+## Standard DSL (Domain Specific Language) options
 
 To facilitate the creating of menus, there are some methods to help you organize the options standard.
 
