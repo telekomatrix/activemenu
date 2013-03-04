@@ -9,6 +9,8 @@ describe ActiveMenu::Menu do
   it {should respond_to(:content)}
   it {should respond_to(:submenus)}
   it {should respond_to(:parent)}
+  it {should respond_to(:options)}
+
 
   its(:submenus) {should  be_a(Array)}
 
@@ -16,6 +18,8 @@ describe ActiveMenu::Menu do
   before :each do
     @menu = ActiveMenu::Menu.new(:idtest, "http://example.com", "My menu")
   end
+
+  #it 'can spec'
 
   it 'has the right attributes values' do
     @menu.content.should == 'My menu'
@@ -51,6 +55,14 @@ describe ActiveMenu::Menu do
     @sm.submenus.length.should == 1
     @ssm.submenus.length.should == 0
 
+  end
+
+
+  it 'can add options to a hash' do 
+    @menu.options[:tag] = :div
+    @menu.options[:tag].should == :div
+    @menu.options[:tag] = :ul
+    @menu.options[:tag].should == :ul
   end
 
 end

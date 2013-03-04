@@ -33,14 +33,28 @@ end
 ```
 ### exists?
 ```ruby
-  ### RSpec Code ....(Tests)
-
   ActiveMenu::create(:someid)
-  ActiveMenu::exists?(:someid).should == true
-  ActiveMenu::exists?(:this_id_doesnt_exists).should == false
+  ActiveMenu::exists?(:someid) # == true
+  ActiveMenu::exists?(:this_id_doesnt_exists) # == false
 ``` 
+ 
 
-### 
+### Set options to the menu
+These options are write to a hash, that you can use with other gem to render it.
+```ruby
+  @menu = ActiveMenu::get(:someid)
+  @menu.options[:tag] = :div
+  @menu.options[:myoptions] = 'myvalue'
+```
+
+### Get the menu
+```ruby
+  # You can retrieve the menu instance with the method get but you can use a block too.
+  @menu = ActiveMenu::get(:someid)
+  ActiveMenu::get(:someid) do |menu|
+    menu.id # The menu id
+  end
+```
 
 
 ### Nested menus

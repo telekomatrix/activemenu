@@ -16,10 +16,9 @@ module ActiveMenu
     self.registry.reset
   end
 
-  def self.get(id)
-    self.registry.get(id)
+  def self.get(id, &block)
+    self.registry.get(id, &block)
   end
-
 
   def self.exists?(id)
     self.registry.exists?(id)

@@ -18,10 +18,11 @@ class ActiveMenu::Registry
     @menus = []
   end
 
-  def get(id)
+  def get(id, &block)
     id = id.to_sym
     selected = @menus.select {|m| m.id == id}
     if selected.length >= 1
+      yield(selected.first) if block_given?
       selected.first
     else
       false
