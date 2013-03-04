@@ -78,6 +78,8 @@ You can set the tag for the menu element or can retrieve it.
     @menu.tag # --> :div
 ```
 
+### text()
+
 ### Nested menus
 ```ruby
 @menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
