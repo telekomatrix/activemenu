@@ -65,4 +65,16 @@ describe ActiveMenu::Menu do
     @menu.options[:tag].should == :ul
   end
 
+  it 'can add a tag as a option' do
+    @menu.tag :li
+    @menu.options[:tag].should == :li
+  end
+
+  it 'can add and retrieve the tag name with the #tag method' do
+    @menu.tag :li
+    @menu.tag.should == :li
+    @menu.tag :div
+    @menu.tag.should == :div
+  end
+
 end

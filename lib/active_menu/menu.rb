@@ -22,4 +22,13 @@ class ActiveMenu::Menu
     sm
   end
 
+  def tag(tag_name=nil)
+    if tag_name.nil?
+      @options[:tag]
+    else
+      tag_name = tag_name.to_sym
+      @options[:tag] = tag_name
+    end
+  end
+
 end

@@ -41,7 +41,21 @@ end
   ActiveMenu::exists?(:someid) # == true
   ActiveMenu::exists?(:this_id_doesnt_exists) # == false
 ``` 
- 
+
+### Get the menu
+You can retrieve the menu instance with the method get...
+```ruby
+  # 
+  @menu = ActiveMenu::get(:someid)
+```
+
+or, you can use a block too and retrieve it as the first param.
+
+```ruby
+  ActiveMenu::get(:someid) do |menu|
+    menu.id # The menu id
+  end
+```
 
 ### Set options to the menu
 These options are write to a hash, that you can use with other gem to render it.
@@ -51,15 +65,19 @@ These options are write to a hash, that you can use with other gem to render it.
   @menu.options[:myoptions] = 'myvalue'
 ```
 
-### Get the menu
-```ruby
-  # You can retrieve the menu instance with the method get but you can use a block too.
-  @menu = ActiveMenu::get(:someid)
-  ActiveMenu::get(:someid) do |menu|
-    menu.id # The menu id
-  end
-```
+## Standard DSL (Domain Specif Language) options
 
+To facilitate the creating of menus, there are some methods to help you organize the options standard.
+
+### tag(tag_name=nil)
+You can set the tag for the menu element or can retrieve it.
+```ruby
+    @menu = ActiveMenu::get(:my_menu)
+    @menu.tag :li
+    @menu.tag # --> :li
+    @menu.tag :div
+    @menu.tag # --> :div
+```
 
 ### Nested menus
 ```ruby
