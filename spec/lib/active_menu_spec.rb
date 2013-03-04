@@ -19,5 +19,10 @@ describe ActiveMenu do
     ActiveMenu::registry.menus.length.should == 1
   end
 
-
+  it 'can create and retrieve a container for menus' do
+    m1 = ActiveMenu::create('admin-nav')
+    m2 = ActiveMenu::get('admin-nav')
+    m1.should == m2
+  end
+  
 end

@@ -8,12 +8,16 @@ module ActiveMenu
     ActiveMenu::Registry.instance
   end
 
-  def self.create(id, href, &block)
+  def self.create(id, href=nil, &block)
     self.registry.create(id, href, &block)
   end
 
   def self.reset
     self.registry.reset
+  end
+
+  def self.get(id)
+    self.registry.get(id)
   end
 
 end
