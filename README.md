@@ -1,5 +1,8 @@
 # ActiveMenu
 
+[![Build Status](https://travis-ci.org/sadjow/activemenu.png)](https://travis-ci.org/sadjow/activemenu)
+[![Dependency Status](https://gemnasium.com/sadjow/activemenu.png)](https://gemnasium.com/sadjow/activemenu)
+
 A toolkit to create menus with multi level and a Domain Specific Lanague(DSL) for Menus.
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
 other renderer like simple-navigation or you own.
