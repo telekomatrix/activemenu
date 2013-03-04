@@ -20,7 +20,21 @@ class ActiveMenu::Registry
 
   def get(id)
     id = id.to_sym
-    @menus.select {|m| m.id == id}.first
+    selected = @menus.select {|m| m.id == id}
+    if selected.length >= 1
+      selected.first
+    else
+      false
+    end
+  end 
+
+  def exists?(id)
+    id = id.to_sym
+    if self.get(id)
+      true
+    else
+      false
+    end
   end
 
 end

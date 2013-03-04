@@ -24,5 +24,11 @@ describe ActiveMenu do
     m2 = ActiveMenu::get('admin-nav')
     m1.should == m2
   end
-  
+
+  it 'can check if a menu exists.' do
+    ActiveMenu::create(:someid)
+    ActiveMenu::exists?(:someid).should == true
+    ActiveMenu::exists?(:this_id_doesnt_exists).should == false
+  end
+
 end

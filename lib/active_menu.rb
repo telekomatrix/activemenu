@@ -20,4 +20,9 @@ module ActiveMenu
     self.registry.get(id)
   end
 
+
+  def self.exists?(id)
+    self.registry.exists?(id)
+  end
+
 end

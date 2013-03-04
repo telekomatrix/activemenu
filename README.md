@@ -20,11 +20,30 @@ Or install it yourself as:
 
 ## Usage
 
+### Creating menus objects
+
 ```ruby
-@menu = ActiveMenu::create(:mymenu)
+require 'active_menu'
+ActiveMenu::create(:mymenu)
+#....
+# In another gem you can use 
+@menu = ActiveMenu::get(:mymenu).submenu do |sub|
+  sub.content == 'My content'
+end
 ```
+### exists?
+```ruby
+  ### RSpec Code ....(Tests)
+
+  ActiveMenu::create(:someid)
+  ActiveMenu::exists?(:someid).should == true
+  ActiveMenu::exists?(:this_id_doesnt_exists).should == false
+``` 
+
+### 
 
 
+### Nested menus
 ```ruby
 @menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
 # def initialize(id, href = nil, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
