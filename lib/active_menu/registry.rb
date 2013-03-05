@@ -2,40 +2,30 @@ require 'singleton'
 class ActiveMenu::Registry
   include Singleton
 
-  attr_accessor :menus
+  attr_accessor :main_node
 
   def initialize
-    @menus = []
+    @main_node = ActiveMenu::Menu.new(:main_node)
   end
 
   def create(id, options={}, &block)
-    menu = ActiveMenu::Menu.new(id, options, &block)
-    @menus << menu
-    menu
+    @main_node.child(id, options, &block)
   end
 
   def reset
-    @menus = []
+    @main_node.leave_children!
   end
 
   def get(id, &block)
-    id = id.to_sym
-    selected = @menus.select {|m| m.id == id}
-    if selected.length >= 1
-      yield(selected.first) if block_given?
-      selected.first
-    else
-      false
-    end
-  end 
+    @main_node.get(id, &block)
+  end
+
+  def menus
+    @main_node.children
+  end
 
   def exists?(id)
-    id = id.to_sym
-    if self.get(id)
-      true
-    else
-      false
-    end
+    @main_node.exists?(id)
   end
 
 end

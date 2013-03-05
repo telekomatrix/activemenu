@@ -1,4 +1,5 @@
 require "active_menu/version"
+require "active_menu/node"
 require "active_menu/menu"
 require "active_menu/registry"
 

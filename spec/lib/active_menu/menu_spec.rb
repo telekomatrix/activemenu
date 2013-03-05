@@ -5,11 +5,11 @@ describe ActiveMenu::Menu do
   subject {ActiveMenu::Menu.new(:idtest)}
 
   it {should respond_to(:id)}
-  it {should respond_to(:submenus)}
+  it {should respond_to(:children)}
   it {should respond_to(:parent)}
   it {should respond_to(:options)}
   
-  its(:submenus) {should  be_a(Array)}
+  its(:children) {should  be_a(Array)}
 
   before :each do
     @menu = ActiveMenu::Menu.new(:idtest, href: "http://example.com", text: "My menu")
@@ -23,33 +23,33 @@ describe ActiveMenu::Menu do
     @menu.href.should == "http://example.com"
   end
 
-  it 'can add submenus' do
-    @submenu = ActiveMenu::Menu.new(:mysubmenu, href: '#an_anchor', text: "My submenu")
-    @menu.submenus << @submenu
-    @menu.submenus.length.should == 1
+  it 'can add children' do
+    @child = ActiveMenu::Menu.new(:mychild, href: '#an_anchor', text: "My child")
+    @menu.children << @child
+    @menu.children.length.should == 1
   end
 
-  it 'can add submenus directly' do
-    submenu =  @menu.submenu(:mysubmenu, href: '#an_anchor', text: "My submenu")
-    @menu.submenus.length.should == 1
-    submenu.parent.should == @menu
-    submenu.parent.id.should == @menu.id
+  it 'can add children directly' do
+    child =  @menu.child(:mychild, href: '#an_anchor', text: "My child")
+    @menu.children.length.should == 1
+    child.parent.should == @menu
+    child.parent.id.should == @menu.id
   end
 
 
   it 'have a flexible DSL for menus' do
-    @menu.submenu(:mysubmenu, text: "test") do |sm|
+    @menu.child(:mychild, text: "test") do |sm|
       @sm = sm
-      sm.text 'My submenu'
-      sm.submenu(:mysubsubmenu, text: 'test 2') do |ssm|
+      sm.text 'My child'
+      sm.child(:mysubchild, text: 'test 2') do |ssm|
         @ssm = ssm
-        ssm.text == 'My subsubmenu'
+        ssm.text == 'My subchild'
       end
     end
 
-    @menu.submenus.length.should == 1
-    @sm.submenus.length.should == 1
-    @ssm.submenus.length.should == 0
+    @menu.children.length.should == 1
+    @sm.children.length.should == 1
+    @ssm.children.length.should == 0
 
   end
 
