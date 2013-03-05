@@ -16,31 +16,25 @@ class ActiveMenu::Menu
     sm
   end
 
-  def text(value = nil)
+  def option(key, value=nil)
     if value.nil?
-      @options[:text]
+      @options[key]
     else
       value = value.to_sym
-      @options[:text] = value
+      @options[key] = value
     end
   end
 
+  def text(value = nil)
+    self.option(:text, value)
+  end
+
   def href(value = nil)
-    if value.nil?
-      @options[:href]
-    else
-      value = value.to_sym
-      @options[:href] = value
-    end
+    self.option(:href, value)
   end  
 
   def tag(value=nil)
-    if value.nil?
-      @options[:tag]
-    else
-      value = value.to_sym
-      @options[:tag] = value
-    end
+    self.option(:tag, value)
   end
 
 end
