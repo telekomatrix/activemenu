@@ -1,5 +1,11 @@
 class ActiveMenu::Menu < ActiveMenu::Node
 
+  def initialize(*args)
+    super(*args)
+    self.visible true
+  end
+
+
   def text(value=nil)
     self.option(:text, value)
   end

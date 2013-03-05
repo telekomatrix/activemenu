@@ -15,7 +15,9 @@ describe ActiveMenu::Menu do
     @menu = ActiveMenu::Menu.new(:idtest, href: "http://example.com", text: "My menu")
   end
 
-  #it 'can spec'
+  it 'starts visible' do
+    @menu.visible.should == true
+  end
 
   it 'has the right attributes values' do
     @menu.text.should == 'My menu'
