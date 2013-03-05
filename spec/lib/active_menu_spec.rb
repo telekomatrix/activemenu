@@ -31,4 +31,18 @@ describe ActiveMenu do
     ActiveMenu::exists?(:this_id_doesnt_exists).should == false
   end
 
+
+  it 'can create menus with lambdas' do
+    ActiveMenu::create('admix-nav') do |nav|
+      nav.tag :div
+      
+      nav.submenu :dashboard do |d|
+        d.text 'dashboard.dashboard'
+        d.href lambda { admix_root_url }
+        d.option :icon, 'icon-flag'
+      end
+      
+    end
+  end
+
 end

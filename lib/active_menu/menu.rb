@@ -20,7 +20,6 @@ class ActiveMenu::Menu
     if value.nil?
       @options[key]
     else
-      value = value.to_sym
       @options[key] = value
     end
   end
