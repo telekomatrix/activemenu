@@ -8,6 +8,32 @@ A toolkit to create menus with multi level and a Domain Specific Language(DSL) f
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
 other renderer like simple-navigation or you own.
 
+## Initial example
+```ruby
+  ActiveMenu::create('admix-nav') do |nav|        
+    
+    nav.child :dashboard do |dashboard|
+      dashboard.text Proc.new { t('dashboard.dashboard') }
+      dashboard.href Proc.new { admix_root_url }
+      dashboard.option :icon, 'icon-flag'
+    end
+
+    nav.child :general do |general|
+      general.text Proc.new { t('general.general') }
+      general.option :icon, 'icon-flag'
+      general.visible Proc.new {current_user.has_role? :admin}
+    end
+
+    nav.child :content do |content|
+      content.text Proc.new { t('general.general') }
+      content.option :icon, 'icon-flag'
+    end
+
+  end
+
+end
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -66,6 +92,20 @@ These options are write to a hash, that you can use with other gem to render it.
 ## Standard DSL (Domain Specific Language) options
 
 To facilitate the creating of menus, there are some methods to help you organize the options standard.
+
+### visible(value=nil)
+You can pass a variable or a Proc to be executed to the visible method.
+```ruby
+  ActiveMenu::create('admix-nav') do |nav|        
+    nav.child :general do |general|
+      general.text Proc.new { t('general.general') }
+      general.option :icon, 'icon-flag'
+      general.visible Proc.new {current_user.has_role? :admin}
+    end
+  end
+
+end
+```
 
 ### tag(value=nil)
 You can set the tag for the menu element or can retrieve it.
