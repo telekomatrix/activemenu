@@ -24,13 +24,13 @@ Or install it yourself as:
 
 ## Usage
 
-### Creating menus objects
+### Creating menus objects in the registry
 
 ```ruby
 ActiveMenu::create(:mymenu)
 #....
 # In another gem you can use 
-@menu = ActiveMenu::get(:mymenu).submenu do |sub|
+@menu = ActiveMenu::get(:mymenu).child do |sub|
   sub.content == 'My content'
 end
 ```
@@ -83,10 +83,10 @@ You can set the tag for the menu element or can retrieve it.
 ```ruby
 @menu = ActiveMenu::Menu.new(:mainmenu, href: 'http://example.com') 
 # def initialize(id, options={}, &block) .... yield(self) if block_given?
-@menu.submenu(:mysubmenu, href: "test") do |sm|
-  sm.text 'My submenu'
-  sm.submenu(:mysubsubmenu, href:'test 2') do |ssm|
-    ssm.text 'My subsubmenu'
+@menu.child(:mychild, href: "test") do |sm|
+  sm.text 'My child'
+  sm.child(:mysubchild, href:'test 2') do |ssm|
+    ssm.text 'My subchild'
   end
 end
 # Let's improve this DSL, contribute please.
