@@ -12,7 +12,9 @@ other renderer like simple-navigation or you own.
   * Compatible with any application or framework.
   * Singleton registry for menus (ActiveMenu::Registry), you can define menus anywhere. (But, use your conscience to a good design.)
   * Domain Specific Language
-  * .
+
+## Some wiki
+[Using simple-navigation with activemenu](https://github.com/sadjow/activemenu/wiki/Using-simple-navigation-for-render-the-activemenu)
 
 ## Initial example
 ```ruby
