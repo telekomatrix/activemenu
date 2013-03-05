@@ -67,6 +67,11 @@ end
   ActiveMenu::exists?(:this_id_doesnt_exists) # == false
 ``` 
 
+### visible
+```ruby
+  ActiveMenu::get(:someid).visible
+```
+
 ### Get the menu
 You can retrieve the menu instance with the method get...
 ```ruby
