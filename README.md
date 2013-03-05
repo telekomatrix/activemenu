@@ -68,7 +68,7 @@ These options are write to a hash, that you can use with other gem to render it.
 
 To facilitate the creating of menus, there are some methods to help you organize the options standard.
 
-### tag(tag_name=nil)
+### tag(value=nil)
 You can set the tag for the menu element or can retrieve it.
 ```ruby
     @menu = ActiveMenu::get(:my_menu)
