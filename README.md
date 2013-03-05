@@ -27,7 +27,6 @@ Or install it yourself as:
 ### Creating menus objects
 
 ```ruby
-require 'active_menu'
 ActiveMenu::create(:mymenu)
 #....
 # In another gem you can use 
