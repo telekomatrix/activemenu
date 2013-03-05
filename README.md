@@ -8,6 +8,12 @@ A toolkit to create menus with multi level and a Domain Specific Language(DSL) f
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
 other renderer like simple-navigation or you own.
 
+## Features
+  * Compatible with any application or framework.
+  * Singleton registry for menus (ActiveMenu::Registry), you can define menus anywhere. (But, use your conscience to a good design.)
+  * Domain Specific Language
+  * .
+
 ## Initial example
 ```ruby
   ActiveMenu::create('admix-nav') do |nav|        
