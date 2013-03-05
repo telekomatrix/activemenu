@@ -1,5 +1,6 @@
 # ActiveMenu
 
+[![Gem Version](https://fury-badge.herokuapp.com/rb/activemenu.png)](http://badge.fury.io/rb/activemenu)
 [![Build Status](https://travis-ci.org/sadjow/activemenu.png)](https://travis-ci.org/sadjow/activemenu)
 [![Dependency Status](https://gemnasium.com/sadjow/activemenu.png)](https://gemnasium.com/sadjow/activemenu)
 [![Code Climate](https://codeclimate.com/github/sadjow/activemenu.png)](https://codeclimate.com/github/sadjow/activemenu)
