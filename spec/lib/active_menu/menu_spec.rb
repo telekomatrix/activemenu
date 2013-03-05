@@ -73,4 +73,11 @@ describe ActiveMenu::Menu do
     @menu.tag.should == :div
   end
 
+  it 'can set a visible options' do
+    @menu.visible false
+    @menu.visible.should == false
+    @menu.visible true
+    @menu.visible.should == true
+  end
+
 end
