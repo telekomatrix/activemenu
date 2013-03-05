@@ -25,10 +25,6 @@ class ActiveMenu::Menu
     end
   end
 
-  def text=(value)
-    self.text(value)
-  end
-
   def href(value = nil)
     if value.nil?
       @options[:href]
@@ -36,12 +32,7 @@ class ActiveMenu::Menu
       value = value.to_sym
       @options[:href] = value
     end
-  end
-
-  def href=(value)
-    self.href(value)
-  end
-  
+  end  
 
   def tag(value=nil)
     if value.nil?

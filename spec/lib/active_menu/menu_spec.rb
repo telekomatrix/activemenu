@@ -40,7 +40,7 @@ describe ActiveMenu::Menu do
   it 'have a flexible DSL for menus' do
     @menu.submenu(:mysubmenu, text: "test") do |sm|
       @sm = sm
-      sm.text = 'My submenu'
+      sm.text 'My submenu'
       sm.submenu(:mysubsubmenu, text: 'test 2') do |ssm|
         @ssm = ssm
         ssm.text == 'My subsubmenu'

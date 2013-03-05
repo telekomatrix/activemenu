@@ -82,12 +82,12 @@ You can set the tag for the menu element or can retrieve it.
 
 ### Nested menus
 ```ruby
-@menu = ActiveMenu::Menu.new(:mainmenu, 'http://example.com') 
-# def initialize(id, href = nil, content=nil, submenus=[], parent=nil, &block) .... yield(self) if block_given?
-@menu.submenu(:mysubmenu, "test") do |sm|
-  sm.content = 'My submenu'
-  sm.submenu(:mysubsubmenu, 'test 2') do |ssm|
-    ssm.content == 'My subsubmenu'
+@menu = ActiveMenu::Menu.new(:mainmenu, href: 'http://example.com') 
+# def initialize(id, options={}, &block) .... yield(self) if block_given?
+@menu.submenu(:mysubmenu, href: "test") do |sm|
+  sm.text 'My submenu'
+  sm.submenu(:mysubsubmenu, href:'test 2') do |ssm|
+    ssm.text 'My subsubmenu'
   end
 end
 # Let's improve this DSL, contribute please.
