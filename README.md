@@ -11,7 +11,7 @@ other renderer like simple-navigation or you own.
 ## Initial example
 ```ruby
   ActiveMenu::create('admix-nav') do |nav|        
-    
+          
     nav.child :dashboard do |dashboard|
       dashboard.text Proc.new { t('dashboard.dashboard') }
       dashboard.href Proc.new { admix_root_url }
@@ -21,17 +21,17 @@ other renderer like simple-navigation or you own.
     nav.child :general do |general|
       general.text Proc.new { t('general.general') }
       general.option :icon, 'icon-flag'
-      general.visible Proc.new {current_user.has_role? :admin}
+      general.href 'javascript:;'
+      general.visible Proc.new {current_user.has_role?(:admin)}
     end
 
     nav.child :content do |content|
-      content.text Proc.new { t('general.general') }
+      content.text Proc.new { t('content.content') }
+      content.href 'javascript:;'
       content.option :icon, 'icon-flag'
     end
 
   end
-
-end
 ```
 
 ## Installation
