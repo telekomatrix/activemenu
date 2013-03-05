@@ -1,10 +1,17 @@
 # ActiveMenu
 
-A toolkit to create menus with multi level and a Domain Specific Lanague(DSL) for Menus.
-It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
-other renderer like simple-navigation or you own.
+If you can't donate or contribute to this project for some reason, but you can add a "Star" to it on github. =)
 
-Y
+A toolkit to create menus with multi-level and a Domain Specific Language (DSL) for menus.
+It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
+other mechanism for rendering, like simple-navigation or a own.
+
+## Semantic Versioning (http://semver.org/)
+This gem is following the Semantic Versioning ()
+
+This gem 
+
+You can define the menu along multiple gems(like plugins of Rails)
 
 ## Installation
 
