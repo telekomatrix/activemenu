@@ -1,24 +1,21 @@
-class ActiveMenu::Menu
-  
-  attr_accessor :id, :href, :content, :submenus, :parent
-  
-  def initialize(id, href, content=nil, submenus=[], parent=nil, &block)
-    @id = id
-    @href = href
-    @submenus = []
-    @content = content
+class ActiveMenu::Menu < ActiveMenu::Node
 
-    #sets the parent
-    submenus.each {|s| s.parent = self }
-    @submenus = submenus
-    @parent = parent
-    yield(self) if block_given?
+  def initialize(*args)
+    super(*args)
+    self.visible true
   end
 
-  def submenu(id, href, content=nil, submenus=[], &block)
-    sm = self.class.new(id, href, content, submenus, self, &block)
-    @submenus << sm
-    sm
+
+  def text(value=nil)
+    self.option(:text, value)
+  end
+
+  def href(value=nil)
+    self.option(:href, value)
+  end  
+
+  def visible(value=nil)
+    self.option(:visible, value)
   end
 
 end

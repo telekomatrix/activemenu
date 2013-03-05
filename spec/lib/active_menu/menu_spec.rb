@@ -2,55 +2,84 @@ require 'spec_helper'
 
 
 describe ActiveMenu::Menu do
-  subject {ActiveMenu::Menu.new(:idtest, "http://example.com")}
+  subject {ActiveMenu::Menu.new(:idtest)}
 
   it {should respond_to(:id)}
-  it {should respond_to(:href)}
-  it {should respond_to(:content)}
-  it {should respond_to(:submenus)}
+  it {should respond_to(:children)}
   it {should respond_to(:parent)}
-
-  its(:submenus) {should  be_a(Array)}
-
+  it {should respond_to(:options)}
+  
+  its(:children) {should  be_a(Array)}
 
   before :each do
-    @menu = ActiveMenu::Menu.new(:idtest, "http://example.com", "My menu")
+    @menu = ActiveMenu::Menu.new(:idtest, href: "http://example.com", text: "My menu")
+  end
+
+  it 'starts visible' do
+    @menu.visible.should == true
   end
 
   it 'has the right attributes values' do
-    @menu.content.should == 'My menu'
+    @menu.text.should == 'My menu'
     @menu.id.should == :idtest
     @menu.href.should == "http://example.com"
   end
 
-  it 'can add submenus' do
-    @submenu = ActiveMenu::Menu.new(:mysubmenu, '#an_anchor', "My submenu")
-    @menu.submenus << @submenu
-    @menu.submenus.length.should == 1
+  it 'can add children' do
+    @child = ActiveMenu::Menu.new(:mychild, href: '#an_anchor', text: "My child")
+    @menu.children << @child
+    @menu.children.length.should == 1
   end
 
-  it 'can add submenus directly' do
-    submenu =  @menu.submenu(:mysubmenu, '#an_anchor', "My submenu")
-    @menu.submenus.length.should == 1
-    submenu.parent.should == @menu
-    submenu.parent.id.should == @menu.id
+  it 'can add children directly' do
+    child =  @menu.child(:mychild, href: '#an_anchor', text: "My child")
+    @menu.children.length.should == 1
+    child.parent.should == @menu
+    child.parent.id.should == @menu.id
   end
 
 
   it 'have a flexible DSL for menus' do
-    @menu.submenu(:mysubmenu, "test") do |sm|
+    @menu.child(:mychild, text: "test") do |sm|
       @sm = sm
-      sm.content = 'My submenu'
-      sm.submenu(:mysubsubmenu, 'test 2') do |ssm|
+      sm.text 'My child'
+      sm.child(:mysubchild, text: 'test 2') do |ssm|
         @ssm = ssm
-        ssm.content == 'My subsubmenu'
+        ssm.text == 'My subchild'
       end
     end
 
-    @menu.submenus.length.should == 1
-    @sm.submenus.length.should == 1
-    @ssm.submenus.length.should == 0
+    @menu.children.length.should == 1
+    @sm.children.length.should == 1
+    @ssm.children.length.should == 0
 
+  end
+
+
+  it 'can add options to a hash' do 
+    @menu.options[:tag] = :div
+    @menu.options[:tag].should == :div
+    @menu.options[:tag] = :ul
+    @menu.options[:tag].should == :ul
+  end
+
+  it 'can add a tag as a option' do
+    @menu.tag :li
+    @menu.options[:tag].should == :li
+  end
+
+  it 'can add and retrieve the tag name with the #tag method' do
+    @menu.tag :li
+    @menu.tag.should == :li
+    @menu.tag :div
+    @menu.tag.should == :div
+  end
+
+  it 'can set a visible options' do
+    @menu.visible false
+    @menu.visible.should == false
+    @menu.visible true
+    @menu.visible.should == true
   end
 
 end
