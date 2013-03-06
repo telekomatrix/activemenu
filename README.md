@@ -47,6 +47,7 @@ This gem is following the [Semantic Versioning](http://semver.org/)
     end
 
   end
+```
 
 ## Installation
 
