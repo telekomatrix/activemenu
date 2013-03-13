@@ -129,9 +129,9 @@ end
 You can set the tag for the menu element or can retrieve it.
 ```ruby
     @menu = ActiveMenu::get(:my_menu)
-    @menu.tag :li
+    @menu.tag = :li
     @menu.tag # --> :li
-    @menu.tag :div
+    @menu.tag = :div
     @menu.tag # --> :div
 ```
 
@@ -142,7 +142,7 @@ You can set the tag for the menu element or can retrieve it.
 @menu = ActiveMenu::Menu.new(:mainmenu, href: 'http://example.com') 
 # def initialize(id, options={}, &block) .... yield(self) if block_given?
 @menu.child(:mychild, href: "test") do |sm|
-  sm.text 'My child'
+  sm.text = 'My child'
   sm.child(:mysubchild, href:'test 2') do |ssm|
     ssm.text = 'My subchild'
   end
