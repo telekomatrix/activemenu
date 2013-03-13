@@ -19,10 +19,6 @@ class ActiveMenu::Node
     end
   end
 
-  def tag(value=nil)
-    self.option(:tag, value)
-  end
-
   def child(id, options={}, &block)
     new_child = self.class.new(id, options)
     new_child.parent = self
@@ -62,6 +58,21 @@ class ActiveMenu::Node
       true
     else
       false
+    end
+  end
+
+  def method_missing(method_name, *args)
+    unless respond_to?(method_name)
+      option_name = method_name.to_s.gsub("=", "").to_sym
+      match_eq = method_name.to_s.match(/^(\w)=/)
+      self.class.class_eval do
+        define_method method_name do |value=nil|
+          option(option_name, value)
+        end
+      end
+      send(method_name, *args)
+    else
+      send(method_name, *args)
     end
   end
 

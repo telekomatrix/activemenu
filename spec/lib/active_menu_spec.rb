@@ -34,10 +34,10 @@ describe ActiveMenu do
 
   it 'can create menus with lambdas' do
     ActiveMenu::create('admix-nav') do |nav|
-      nav.tag :div
+      nav.tag = :div
       nav.child :dashboard do |d|
-        d.text 'dashboard.dashboard'
-        d.href lambda { admix_root_url }
+        d.text = 'dashboard.dashboard'
+        d.href = lambda { admix_root_url }
         d.option :icon, 'icon-flag'
       end
     end
@@ -49,10 +49,10 @@ describe ActiveMenu do
     before :each do
       @dashboard = nil
       @nav = ActiveMenu::create('admix-nav') do |nav|
-        nav.tag :div
+        nav.tag = :div
         @dashboard = nav.child :dashboard do |d|
-          d.text 'dashboard.dashboard'
-          d.href lambda { admix_root_url }
+          d.text = 'dashboard.dashboard'
+          d.href = lambda { admix_root_url }
           d.option :icon, 'icon-flag'
         end
       end
@@ -72,7 +72,7 @@ describe ActiveMenu do
         nav.get(:dashboard) do |d|          
           d.child :testchild do |sub|
             @testchild = sub
-            sub.text "My child"
+            sub.text = "My child"
           end
         end
       end

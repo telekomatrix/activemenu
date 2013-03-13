@@ -15,6 +15,13 @@ describe ActiveMenu::Menu do
     @menu = ActiveMenu::Menu.new(:idtest, href: "http://example.com", text: "My menu")
   end
 
+  it 'can define dynamic options' do
+    @menu.seila = :li
+    @menu.seila.should == :li
+    @menu.seila = :div
+    @menu.seila.should == :div
+  end
+
   it 'starts visible' do
     @menu.visible.should == true
   end
@@ -42,7 +49,7 @@ describe ActiveMenu::Menu do
   it 'have a flexible DSL for menus' do
     @menu.child(:mychild, text: "test") do |sm|
       @sm = sm
-      sm.text 'My child'
+      sm.text = 'My child'
       sm.child(:mysubchild, text: 'test 2') do |ssm|
         @ssm = ssm
         ssm.text == 'My subchild'
@@ -64,22 +71,27 @@ describe ActiveMenu::Menu do
   end
 
   it 'can add a tag as a option' do
-    @menu.tag :li
+    @menu.tag = :li
     @menu.options[:tag].should == :li
   end
 
   it 'can add and retrieve the tag name with the #tag method' do
-    @menu.tag :li
+    @menu.tag = :li
     @menu.tag.should == :li
-    @menu.tag :div
+    @menu.tag = :div
     @menu.tag.should == :div
   end
 
   it 'can set a visible options' do
-    @menu.visible false
+    @menu.visible = false
     @menu.visible.should == false
-    @menu.visible true
+    @menu.visible = true
     @menu.visible.should == true
+  end
+
+  it 'can set a undefined method as a option' do
+    @menu.author = "Sadjow"
+    @menu.author.should == "Sadjow"
   end
 
 end

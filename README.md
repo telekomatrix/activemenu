@@ -5,11 +5,9 @@
 [![Dependency Status](https://gemnasium.com/sadjow/activemenu.png)](https://gemnasium.com/sadjow/activemenu)
 [![Code Climate](https://codeclimate.com/github/sadjow/activemenu.png)](https://codeclimate.com/github/sadjow/activemenu)
 
-If you can't donate or contribute to this project for some reason, but you can add a "Star" to it on github. =)
-
 Create menus with multi-level and a Domain Specific Language (DSL) for menus.
 It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
-other mechanism for rendering, like simple-navigation or a own.
+other mechanism for rendering, like simple-navigation or other.
 
 ## Semantic Versioning (http://semver.org/)
 This gem is following the [Semantic Versioning](http://semver.org/)
@@ -28,22 +26,22 @@ This gem is following the [Semantic Versioning](http://semver.org/)
   ActiveMenu::create('admix-nav') do |nav|        
           
     nav.child :dashboard do |dashboard|
-      dashboard.text Proc.new { t('dashboard.dashboard') }
-      dashboard.href Proc.new { admix_root_url }
-      dashboard.option :icon, 'icon-flag'
+      dashboard.text = Proc.new { t('dashboard.dashboard') }
+      dashboard.href = Proc.new { admix_root_url }
+      dashboard.icon = 'icon-flag'
     end
 
     nav.child :general do |general|
-      general.text Proc.new { t('general.general') }
-      general.option :icon, 'icon-flag'
-      general.href 'javascript:;'
-      general.visible Proc.new {current_user.has_role?(:admin)}
+      general.text = Proc.new { t('general.general') }
+      general.icon = 'icon-flag'
+      general.href = 'javascript:;'
+      general.visible = Proc.new {current_user.has_role?(:admin)}
     end
 
     nav.child :content do |content|
-      content.text Proc.new { t('content.content') }
-      content.href 'javascript:;'
-      content.option :icon, 'icon-flag'
+      content.text = Proc.new { t('content.content') }
+      content.href = 'javascript:;'
+      content.icon = 'icon-flag'
     end
 
   end
@@ -72,7 +70,7 @@ ActiveMenu::create(:mymenu)
 #....
 # In another gem you can use 
 @menu = ActiveMenu::get(:mymenu).child do |sub|
-  sub.content == 'My content'
+  sub.content = 'My content'
 end
 ```
 ### exists?
@@ -105,8 +103,8 @@ or, you can use a block too and retrieve it as the first param.
 These options are write to a hash, that you can use with other gem to render it.
 ```ruby
   @menu = ActiveMenu::get(:someid)
-  @menu.options[:tag] = :div
-  @menu.options[:myoptions] = 'myvalue'
+  @menu.myoption = 'my value'
+  @menu.myoption2 = Proc.new { my_dynamic_method #that will run when I use this option }
 ```
 
 ## Standard DSL (Domain Specific Language) options
@@ -118,9 +116,9 @@ You can pass a variable or a Proc to be executed to the visible method.
 ```ruby
   ActiveMenu::create('admix-nav') do |nav|        
     nav.child :general do |general|
-      general.text Proc.new { t('general.general') }
-      general.option :icon, 'icon-flag'
-      general.visible Proc.new {current_user.has_role? :admin}
+      general.text = Proc.new { t('general.general') }
+      general.icon = 'icon-flag'
+      general.visible = Proc.new {current_user.has_role? :admin}
     end
   end
 
@@ -146,7 +144,7 @@ You can set the tag for the menu element or can retrieve it.
 @menu.child(:mychild, href: "test") do |sm|
   sm.text 'My child'
   sm.child(:mysubchild, href:'test 2') do |ssm|
-    ssm.text 'My subchild'
+    ssm.text = 'My subchild'
   end
 end
 # Let's improve this DSL, contribute please.
