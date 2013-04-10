@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Activemenu by sadjow</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/sadjow/activemenu">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/sadjow/activemenu/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/sadjow/activemenu/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Activemenu</h1>
+          <p>A toolkit for menus</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/sadjow">sadjow</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p><img src="https://raw.github.com/sadjow/activemenu/master/activemenu_logo.png" alt="ActiveMenu Logo"></p>
+
+<p><a href="http://badge.fury.io/rb/activemenu"><img src="https://fury-badge.herokuapp.com/rb/activemenu.png" alt="Gem Version"></a>
+<a href="https://travis-ci.org/sadjow/activemenu"><img src="https://travis-ci.org/sadjow/activemenu.png" alt="Build Status"></a>
+<a href="https://gemnasium.com/sadjow/activemenu"><img src="https://gemnasium.com/sadjow/activemenu.png" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/sadjow/activemenu"><img src="https://codeclimate.com/github/sadjow/activemenu.png" alt="Code Climate"></a></p>
+
+<p>Create menus with multi-level and a Domain Specific Language (DSL) for menus.
+It's extremely Object Oriented. It still doesn't have code for render, but you can combine it with
+other mechanism for rendering, like simple-navigation or other.</p>
+
+<h2>Semantic Versioning (<a href="http://semver.org/">http://semver.org/</a>)</h2>
+
+<p>This gem is following the <a href="http://semver.org/">Semantic Versioning</a></p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Compatible with any application or framework.</li>
+<li>Singleton registry for menus (ActiveMenu::Registry), you can define menus anywhere. (But, use your conscience to a good design.)</li>
+<li>Domain Specific Language</li>
+<li>You can define the menu along multiple gems(like plugins of Rails)</li>
+</ul><h2>Some wiki</h2>
+
+<p><a href="https://github.com/sadjow/activemenu/wiki/Using-simple-navigation-for-render-the-activemenu">Using simple-navigation with activemenu</a></p>
+
+<h2>Initial example</h2>
+
+<div class="highlight"><pre>  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:create</span><span class="p">(</span><span class="s1">'admix-nav'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">nav</span><span class="o">|</span>        
+
+    <span class="n">nav</span><span class="o">.</span><span class="n">child</span> <span class="ss">:dashboard</span> <span class="k">do</span> <span class="o">|</span><span class="n">dashboard</span><span class="o">|</span>
+      <span class="n">dashboard</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">t</span><span class="p">(</span><span class="s1">'dashboard.dashboard'</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">dashboard</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">admix_root_url</span> <span class="p">}</span>
+      <span class="n">dashboard</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="s1">'icon-flag'</span>
+    <span class="k">end</span>
+
+    <span class="n">nav</span><span class="o">.</span><span class="n">child</span> <span class="ss">:general</span> <span class="k">do</span> <span class="o">|</span><span class="n">general</span><span class="o">|</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">t</span><span class="p">(</span><span class="s1">'general.general'</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="s1">'icon-flag'</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="s1">'javascript:;'</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span><span class="n">current_user</span><span class="o">.</span><span class="n">has_role?</span><span class="p">(</span><span class="ss">:admin</span><span class="p">)}</span>
+    <span class="k">end</span>
+
+    <span class="n">nav</span><span class="o">.</span><span class="n">child</span> <span class="ss">:content</span> <span class="k">do</span> <span class="o">|</span><span class="n">content</span><span class="o">|</span>
+      <span class="n">content</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">t</span><span class="p">(</span><span class="s1">'content.content'</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">content</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="s1">'javascript:;'</span>
+      <span class="n">content</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="s1">'icon-flag'</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+</pre></div>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'activemenu'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install activemenu
+</code></pre>
+
+<h2>Usage</h2>
+
+<h3>Creating menus objects in the registry</h3>
+
+<div class="highlight"><pre><span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:create</span><span class="p">(</span><span class="ss">:mymenu</span><span class="p">)</span>
+<span class="c1">#....</span>
+<span class="c1"># In another gem you can use </span>
+<span class="vi">@menu</span> <span class="o">=</span> <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:mymenu</span><span class="p">)</span><span class="o">.</span><span class="n">child</span> <span class="k">do</span> <span class="o">|</span><span class="nb">sub</span><span class="o">|</span>
+  <span class="nb">sub</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s1">'My content'</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>exists?</h3>
+
+<div class="highlight"><pre>  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:create</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span>
+  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:exists?</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span> <span class="c1"># == true</span>
+  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:exists?</span><span class="p">(</span><span class="ss">:this_id_doesnt_exists</span><span class="p">)</span> <span class="c1"># == false</span>
+</pre></div>
+
+<h3>visible</h3>
+
+<div class="highlight"><pre>  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span><span class="o">.</span><span class="n">visible</span>
+</pre></div>
+
+<h3>Get the menu</h3>
+
+<p>You can retrieve the menu instance with the method get...</p>
+
+<div class="highlight"><pre>  <span class="vi">@menu</span> <span class="o">=</span> <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span>
+</pre></div>
+
+<p>or, you can use a block too and retrieve it as the first param.</p>
+
+<div class="highlight"><pre>  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">menu</span><span class="o">|</span>
+    <span class="n">menu</span><span class="o">.</span><span class="n">id</span> <span class="c1"># The menu id</span>
+  <span class="k">end</span>
+</pre></div>
+
+<h3>Set options to the menu</h3>
+
+<p>These options are write to a hash, that you can use with other gem to render it.</p>
+
+<div class="highlight"><pre>  <span class="vi">@menu</span> <span class="o">=</span> <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:someid</span><span class="p">)</span>
+  <span class="vi">@menu</span><span class="o">.</span><span class="n">myoption</span> <span class="o">=</span> <span class="s1">'my value'</span>
+  <span class="vi">@menu</span><span class="o">.</span><span class="n">myoption2</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">my_dynamic_method</span> <span class="c1">#that will run when I use this option }</span>
+</pre></div>
+
+<h2>Standard DSL (Domain Specific Language) options</h2>
+
+<p>To facilitate the creating of menus, there are some methods to help you organize the options standard.</p>
+
+<h3>visible(value=nil)</h3>
+
+<p>You can pass a variable or a Proc to be executed to the visible method.</p>
+
+<div class="highlight"><pre>  <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:create</span><span class="p">(</span><span class="s1">'admix-nav'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">nav</span><span class="o">|</span>        
+    <span class="n">nav</span><span class="o">.</span><span class="n">child</span> <span class="ss">:general</span> <span class="k">do</span> <span class="o">|</span><span class="n">general</span><span class="o">|</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="n">t</span><span class="p">(</span><span class="s1">'general.general'</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="s1">'icon-flag'</span>
+      <span class="n">general</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span><span class="n">current_user</span><span class="o">.</span><span class="n">has_role?</span> <span class="ss">:admin</span><span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+
+<h3>tag(value=nil)</h3>
+
+<p>You can set the tag for the menu element or can retrieve it.</p>
+
+<div class="highlight"><pre>    <span class="vi">@menu</span> <span class="o">=</span> <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:get</span><span class="p">(</span><span class="ss">:my_menu</span><span class="p">)</span>
+    <span class="vi">@menu</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="ss">:li</span>
+    <span class="vi">@menu</span><span class="o">.</span><span class="n">tag</span> <span class="c1"># --&gt; :li</span>
+    <span class="vi">@menu</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="ss">:div</span>
+    <span class="vi">@menu</span><span class="o">.</span><span class="n">tag</span> <span class="c1"># --&gt; :div</span>
+</pre></div>
+
+<h3>text()</h3>
+
+<h3>Nested menus</h3>
+
+<div class="highlight"><pre><span class="vi">@menu</span> <span class="o">=</span> <span class="ss">ActiveMenu</span><span class="p">:</span><span class="ss">:Menu</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:mainmenu</span><span class="p">,</span> <span class="ss">href</span><span class="p">:</span> <span class="s1">'http://example.com'</span><span class="p">)</span> 
+<span class="c1"># def initialize(id, options={}, &amp;block) .... yield(self) if block_given?</span>
+<span class="vi">@menu</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="ss">:mychild</span><span class="p">,</span> <span class="ss">href</span><span class="p">:</span> <span class="s2">"test"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">sm</span><span class="o">|</span>
+  <span class="n">sm</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">'My child'</span>
+  <span class="n">sm</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="ss">:mysubchild</span><span class="p">,</span> <span class="ss">href</span><span class="p">:</span><span class="s1">'test 2'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ssm</span><span class="o">|</span>
+    <span class="n">ssm</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">'My subchild'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+<span class="c1"># Let's improve this DSL, contribute please.</span>
+</pre></div>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-40055802-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
